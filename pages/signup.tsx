@@ -83,7 +83,7 @@ const Signup: NextPage<unknown> = () => {
             type="text"
             className="rounded-md border-2 border-blue-400"
             onChange={(event) => {
-              setUsername(event.target.value);
+              setUsername(event.target.value.trim().replace(/\s/g, '_'));
               setErrorMessage(undefined);
             }}
           />
