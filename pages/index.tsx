@@ -1,9 +1,10 @@
 import type { NextPage } from 'next';
+import { AuthAction, withAuthUser } from 'next-firebase-auth';
 import Head from 'next/head';
 import InputButton from '../components/InputButton';
 
-const Home: NextPage = () => (
-  <div className="flex min-h-screen flex-col items-center justify-center py-2 ">
+const Home: NextPage<unknown> = () => (
+  <div className="flex min-h-screen flex-col items-center justify-center py-2">
     <Head>
       <title>Mehssage</title>
       <link rel="icon" href="/favicon.ico" />
@@ -20,4 +21,6 @@ const Home: NextPage = () => (
   </div>
 );
 
-export default Home;
+export default withAuthUser({
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+})(Home);
